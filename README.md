@@ -1,4 +1,4 @@
-# 🎭 The Premium Comedy Dashboard (Jokes Viewer Interface)
+# The Premium Comedy Dashboard (Jokes Viewer Interface)
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Tech-React_|_Vite_|_CSS3-blue?style=for-the-badge)
@@ -7,52 +7,44 @@
 
 That was fine for a beginner in 2024. But in 2026, building a generic UI isn't enough. You need to build something that feels like an enterprise-level, luxury dashboard. Something that is highly interactive, performant, and visually stunning.
 
-This is the **Premium Comedy Dashboard**. Built for the MasterJi Web Dev Cohort 2026, using the FreeAPI Random Jokes endpoint.
+This is the Premium Comedy Dashboard. Built for the MasterJi Web Dev Cohort 2026, using the FreeAPI Random Jokes endpoint.
 
 Here is exactly how I leveled up from my previous API projects and built this. Step by step.
 
 ---
 
-## 💡 The Next Level of React Architecture
+## The Next Level of React Architecture
 
-In my previous projects, I mastered basic fetching and filtering. In this project, I tackled **Industry Standard Architecture and Advanced UX**.
+In my previous projects, I mastered basic fetching and filtering. In this project, I tackled Industry Standard Architecture and Advanced UX.
 
-### 1️⃣ Component-Based Architecture
-My `App.jsx` was becoming a 200+ line monster filled with UI logic and API calls. That's not how real tech companies write React. 
-I completely refactored the app into isolated, clean components:
-- `Header.jsx`: Handles the Glassmorphism stats dashboard.
-- `JokeCard.jsx`: Handles the individual joke logic, dynamic tagging, and clipboard copying.
-- `Pagination.jsx`: Handles the advanced page navigation.
-- `Loader.jsx` & `ErrorState.jsx`: Handles UI feedback.
-Now, my `App.jsx` is just a clean 75-line file that only manages state and API flow.
+### 1. Component-Based Architecture
+- **Problem:** `App.jsx` was a 200+ line monolithic file.
+- **Solution:** Refactored into isolated components (`Header.jsx`, `JokeCard.jsx`, `Pagination.jsx`, `Loader.jsx`, `ErrorState.jsx`).
+- **Result:** `App.jsx` is now a clean 75-line file strictly for state and API flow.
 
-### 2️⃣ Advanced Numbered Pagination
-A simple "Next" button is terrible UX if the user wants to jump pages. I built a fully functional numbered pagination system:
-`« First | ‹ Prev | 1 | 2 | 3 | Next › | Last »`
-By extracting `meta.totalPages` and `meta.page` from the API, I dynamically generated a moving window of page numbers that lets the user jump exactly where they want.
+### 2. Advanced Numbered Pagination
+- **Problem:** A basic "Next" button provides terrible UX for deep navigation.
+- **Solution:** Built a functional numbered pagination system (`« First | ‹ Prev | 1 | 2 | 3 | Next › | Last »`).
+- **Result:** Extracted `meta.totalPages` and `meta.page` to generate a dynamic moving window of page numbers.
 
-### 3️⃣ The "Glitchy Loader" Fix
-FreeAPI is incredibly fast (returning data in 100-200ms). This caused the beautiful React loading spinner to flash for a split second, looking like a UI glitch rather than a loading state. 
-I introduced a synthetic `Promise` delay (`800ms`) inside the fetch logic. Now, the bouncing-dots animation plays smoothly before fading into the jokes, giving the app a premium, deliberate feel.
+### 3. The Glitchy Loader Fix
+- **Problem:** FreeAPI's high speed (100-200ms) caused the loading spinner to flash, looking like a glitch.
+- **Solution:** Introduced a synthetic `Promise` delay (`800ms`) inside the fetch logic.
+- **Result:** The bouncing-dots animation plays smoothly before fading into content, providing a premium feel.
 
 ---
 
-## 🎨 The Real Secret: CSS Engineering
+## The Real Secret: CSS Engineering
 
 I wanted this to look like a high-end standup comedy club's internal dashboard. Here is what makes this UI stand out:
 
-✨ **1. Ambient Neon Glow** 
-I didn't just use a plain dark background. I engineered a massive, fixed, highly-blurred radial gradient using CSS pseudo-elements (`body::before` and `body::after`). As you scroll through the jokes, the background maintains a constant, cinematic neon yellow/green ambient glow.
-
-📐 **2. The Fluid Masonry Grid** 
-Single-column lists are boring. By tweaking the API query to `limit=12`, I had the perfect number of items to create a responsive CSS Grid (`repeat(auto-fill, minmax(280px, 1fr))`). On large screens, it beautifully expands into a 4-column layout, and scales down smoothly to 3, 2, and 1 column on mobile.
-
-🚫 **3. The Horizontal Scrollbar Kill**
-Absolute positioning often breaks mobile layouts by causing annoying horizontal scrolling. I locked down the viewport using strict `overflow-x: hidden` and `max-width: 100vw` at the `html` and `body` levels, ensuring the glow effects never break the mobile experience.
+- **Ambient Neon Glow:** Engineered a fixed, highly-blurred radial gradient using CSS pseudo-elements (`body::before` and `body::after`) for a cinematic neon glow.
+- **The Fluid Masonry Grid:** Tweaked the API query to `limit=12` and used `repeat(auto-fill, minmax(280px, 1fr))` to create a responsive 4-column layout that scales smoothly down to 1 column.
+- **The Horizontal Scrollbar Kill:** Prevented absolute positioning overflow by strictly applying `overflow-x: hidden` and `max-width: 100vw` at the `html` and `body` levels.
 
 ---
 
-## 🏃‍♂️ Try it yourself
+## Try it yourself
 
 1. **Clone this repository** to your machine:
    ```bash
