@@ -11,28 +11,28 @@ That was fine for a beginner in 2024. But in 2026, building a generic UI isn't e
 
 Here is exactly how I leveled up from my previous API projects and built this. Step by step.
 
----
+***
 
 ## The Next Level of React Architecture
 
 The previous three projects were visually great, but they only handled a handful of items at a time. It was time to tackle massive datasets. In this project, I tackled Industry Standard Component Architecture and Real Backend Pagination.
 
 ### 1. Component-Based Architecture
-- **Problem:** `App.jsx` was a 200+ line monolithic file.
-- **Solution:** Refactored into isolated components (`Header.jsx`, `JokeCard.jsx`, `Pagination.jsx`, `Loader.jsx`, `ErrorState.jsx`).
-- **Result:** `App.jsx` is now a clean 75-line file strictly for state and API flow.
+* **Problem:** `App.jsx` was a 200+ line monolithic file.
+* **Solution:** Refactored into isolated components (`Header.jsx`, `JokeCard.jsx`, `Pagination.jsx`, `Loader.jsx`, `ErrorState.jsx`).
+* **Result:** `App.jsx` is now a clean 75-line file strictly for state and API flow.
 
 ### 2. Advanced Numbered Pagination
-- **Problem:** A basic "Next" button provides terrible UX for deep navigation.
-- **Solution:** Built a functional numbered pagination system (`« First | ‹ Prev | 1 | 2 | 3 | Next › | Last »`).
-- **Result:** Extracted `meta.totalPages` and `meta.page` to generate a dynamic moving window of page numbers.
+* **Problem:** A basic "Next" button provides terrible UX for deep navigation.
+* **Solution:** Built a functional numbered pagination system (`« First | ‹ Prev | 1 | 2 | 3 | Next › | Last »`).
+* **Result:** Extracted `meta.totalPages` and `meta.page` to generate a dynamic moving window of page numbers.
 
 ### 3. The Glitchy Loader Fix
-- **Problem:** FreeAPI's high speed (100-200ms) caused the loading spinner to flash, looking like a glitch.
-- **Solution:** Introduced a synthetic `Promise` delay (`800ms`) inside the fetch logic.
-- **Result:** The bouncing-dots animation plays smoothly before fading into content, providing a premium feel.
+* **Problem:** FreeAPI's high speed (100-200ms) caused the loading spinner to flash, looking like a glitch.
+* **Solution:** Introduced a synthetic `Promise` delay (`800ms`) inside the fetch logic.
+* **Result:** The bouncing-dots animation plays smoothly before fading into content, providing a premium feel.
 
----
+***
 
 ## The API Integration Breakdown
 
@@ -40,30 +40,30 @@ To build a real pagination system, you have to understand exactly how the API se
 
 ### 1. The Dynamic Fetch
 If you just fetch the base URL, you get whatever the server decides to give you. I needed exact control for the pagination grid.
-- **The URL:** `https://api.freeapi.app/api/v1/public/randomjokes?page=${currentPage}&limit=12`
-- **Why it matters:** By injecting the `currentPage` state directly into the URL, the API specifically returns only the 12 jokes for that exact page number.
+* **The URL:** `https://api.freeapi.app/api/v1/public/randomjokes?page=${currentPage}&limit=12`
+* **Why it matters:** By injecting the `currentPage` state directly into the URL, the API specifically returns only the 12 jokes for that exact page number.
 
 ### 2. Demystifying the JSON Data
 Real-world APIs wrap their data in heavy metadata. When I logged the response, I found two critical pieces of data:
-- **`data.data.data`**: This is the actual Array containing the 12 joke objects (`joke.content`).
-- **`data.data`**: This is the Meta object. It contains critical pagination math like `totalPages`, `totalItems`, and `currentPageItems`.
+* **`data.data.data`**: This is the actual Array containing the 12 joke objects (`joke.content`).
+* **`data.data`**: This is the Meta object. It contains critical pagination math like `totalPages`, `totalItems`, and `currentPageItems`.
 
 ### 3. Dual State Management
 I needed two separate React states to handle this complex response securely.
-- **The Jokes:** `setJokes(data.data.data)` feeds the masonry grid.
-- **The Meta:** `setMeta({ totalItems, currentPageItems, totalPages, page })` feeds the Pagination component, letting it know exactly how many pages exist to calculate the moving window of numbered buttons.
+* **The Jokes:** `setJokes(data.data.data)` feeds the masonry grid.
+* **The Meta:** `setMeta({ totalItems, currentPageItems, totalPages, page })` feeds the Pagination component, letting it know exactly how many pages exist to calculate the moving window of numbered buttons.
 
----
+***
 
 ## The Real Secret: CSS Engineering
 
 I wanted this to look like a high-end standup comedy club's internal dashboard. Here is what makes this UI stand out:
 
-- **Ambient Neon Glow:** Engineered a fixed, highly-blurred radial gradient using CSS pseudo-elements (`body::before` and `body::after`) for a cinematic neon glow.
-- **The Fluid Masonry Grid:** Tweaked the API query to `limit=12` and used `repeat(auto-fill, minmax(280px, 1fr))` to create a responsive 4-column layout that scales smoothly down to 1 column.
-- **The Horizontal Scrollbar Kill:** Prevented absolute positioning overflow by strictly applying `overflow-x: hidden` and `max-width: 100vw` at the `html` and `body` levels.
+* **Ambient Neon Glow:** Engineered a fixed, highly-blurred radial gradient using CSS pseudo-elements (`body::before` and `body::after`) for a cinematic neon glow.
+* **The Fluid Masonry Grid:** Tweaked the API query to `limit=12` and used `repeat(auto-fill, minmax(280px, 1fr))` to create a responsive 4-column layout that scales smoothly down to 1 column.
+* **The Horizontal Scrollbar Kill:** Prevented absolute positioning overflow by strictly applying `overflow-x: hidden` and `max-width: 100vw` at the `html` and `body` levels.
 
----
+***
 
 ## Try it yourself
 
