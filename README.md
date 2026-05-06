@@ -7,7 +7,7 @@
 
 That was fine for a beginner in 2024. But in 2026, building a generic UI isn't enough. You need to build something that feels like an enterprise-level, luxury dashboard. Something that is highly interactive, performant, and visually stunning.
 
-This is the Premium Comedy Dashboard. Built for the MasterJi Web Dev Cohort 2026, using the FreeAPI Random Jokes endpoint.
+**Welcome to Part 4 of my FreeAPI Mastery Series.** This is the Premium Comedy Dashboard, built using the FreeAPI Random Jokes endpoint.
 
 Here is exactly how I leveled up from my previous API projects and built this. Step by step.
 
@@ -15,7 +15,7 @@ Here is exactly how I leveled up from my previous API projects and built this. S
 
 ## The Next Level of React Architecture
 
-In my previous projects, I mastered basic fetching and filtering. In this project, I tackled Industry Standard Architecture and Advanced UX.
+The previous three projects were visually great, but they only handled a handful of items at a time. It was time to tackle massive datasets. In this project, I tackled Industry Standard Component Architecture and Real Backend Pagination.
 
 ### 1. Component-Based Architecture
 - **Problem:** `App.jsx` was a 200+ line monolithic file.
